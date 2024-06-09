@@ -1,17 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import NavBar from './components/Navbar';
-import Banner from './components/BannerPage';
-import WhyWandorn from './components/Why';
-import SignupForm from './page/Signup';
-import PasswordForm from './components/password';
-import Login from './page/Login';
-import { Routes,Route} from 'react-router-dom';
-import { AuthProvider } from './Context/AuthContext';
-import PrivateRoute from './page/PrivateRoute';
-import Signup from './page/Signup';
-import Details from './page/Details';
-import LandingPage from './page/LandingPage';
+import logo from "./logo.svg";
+import "./App.css";
+import NavBar from "./components/Navbar";
+import Banner from "./components/BannerPage";
+import WhyWandorn from "./components/Why";
+import SignupForm from "./page/Signup";
+import PasswordForm from "./components/password";
+import Login from "./page/Login";
+import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./Context/AuthContext";
+import PrivateRoute from "./page/PrivateRoute";
+import Signup from "./page/Signup";
+import Details from "./page/Details";
+import LandingPage from "./page/LandingPage";
+import SharkVideo from "./components/CardCity";
+import CardGrid from "./components/CardCity";
 
 function App() {
   return (
@@ -21,20 +23,20 @@ function App() {
       <WhyWandorn/> */}
       {/* <SignupForm/> */}
       {/* <PasswordForm/> */}
-      <NavBar/>
+      <NavBar />
       <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-                path="/details"
-                element={
-                    <PrivateRoute>
-                        <Details />
-                    </PrivateRoute>
-                }
-            />
-        </Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/details"
+          element={
+            <PrivateRoute>
+              <Details />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
     </div>
   );
 }

@@ -1,35 +1,21 @@
 import React, { useEffect, useState } from "react";
-import {validateCriteria, validateEmail, validateName, validatePhoneNumber} from "../utills/validation"
-import { Link } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import {validatePassword,validateCriteria, validateEmail, validateName} from "../utills/validation"
+import { Link, useNavigate } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
+import Spinner from "../components/Spinner";
 function Signup() {
   const [password, setPassword] = useState("");
+  const navigate=useNavigate()
   const [shouldSubmit,setShoulSubmit]=useState(false)
+  const [errors, setErrors] = useState("");
   const [formdata, setFormData] = useState({
     name: "",
     email: "",
     password: ""
   });
-  
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [errors, setErrors] = useState("");
-
-  
-  const validatePassword = (password) => {
-    for (const criteria of validateCriteria) {
-        
-      if (!criteria.regex.test(password)) {
-        console.log("message",criteria.message)
-        return criteria.message;
-      }
-    }
-    return "";
-  };
-
   const handleChange = (e) => {
-    // const newPassword = event.target.value;
     const { name,value } = e.target;
-    console.log("name",name)
     if(name=="password"){
         setPassword(value)
         setErrors(validatePassword(value));
@@ -42,24 +28,21 @@ function Signup() {
   };
 
   const handleSubmit = (e) => {
-    console.log("submit")
     e.preventDefault();
     if (!validateEmail(formdata.email)) {
-    //   toast.success('Please enter a valid email address.', {
-    //     position: toast.POSITION_CENTER,
-    //     className: 'custom-toast',
-    //     bodyClassName: 'custom-toast-body',
-    // });
-    alert(email)
+      toast.success('Please enter a valid email address.', {
+        position: toast.POSITION_CENTER,
+        className: 'custom-toast',
+        bodyClassName: 'custom-toast-body',
+    });
       return;
     }
     if (!validateName(formdata.name)) {
-    //   toast.success("Please enter a valid name.", {
-    //     position: toast.POSITION_CENTER,
-    //     className: 'custom-toast',
-    //     bodyClassName: 'custom-toast-body',
-    // });
-    alert(name)
+      toast.success("Please enter a valid name.", {
+        position: toast.POSITION_CENTER,
+        className: 'custom-toast',
+        bodyClassName: 'custom-toast-body',
+    });
       return;
     }
     if(formdata){
@@ -70,51 +53,58 @@ function Signup() {
   useEffect(()=>{
     const submitForm = async () => {
         try {
-          const response = await fetch('http://localhost:5555/register', {
+          const response = await fetch('https://wonderon-backend.vercel.app/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(formdata),
           });
-  
           const data = await response.json();
-        console.log("data",data)
+          if(response.ok){
+            navigate("/")
+          }
+          else{
+            toast.success(data.message, {
+              position: toast.POSITION_CENTER,
+              className: 'custom-toast',
+              bodyClassName: 'custom-toast-body',
+          });
+          }
+          
         } catch (error) {
           console.error('Error submitting form:', error);
         }
       };
       if (shouldSubmit) {
         submitForm();
-        setShoulSubmit(false); // Reset the state
+        setShoulSubmit(false); 
       }
 
   },[shouldSubmit])
 
-  console.log("form",formdata)
   return (
     <div className="relative">
       <div className="max-w-7xl mx-auto py-10 sm:py-20 lg:py-32 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-32">
         <div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mt-7">
-            Join the Experts and Discover the{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-400">
-              MERN Way
-            </span>{" "}
-            to Full-Stack Mastery!
+            Sign Up For More Details of {" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-900">
+              Trip
+            </span>
+            
           </h1>
         </div>
         <div className="bg-gray-50 rounded-xl p-4 sm:p-6 md:p-8 max-w-lg">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">
               Registration Form
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-400">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-900">
                 !
               </span>
             </h2>
             <p className="text-gray-500 text-sm sm:text-md">
-              Join us to master the MERN stack and unleash your potential in
-              full-stack development!
+              Register For Explore More details
             </p>
           </div>
           <form className="mt-4">
@@ -165,21 +155,22 @@ function Signup() {
               </ul>
               <button
               onClick={handleSubmit}
-              className={`mt-8 w-full bg-gradient-to-r from-red-400 to-pink-400 text-white p-2 rounded`}
+              className={`mt-8 w-full bg-gradient-to-r from-blue-400 to-blue-900 text-white p-2 rounded`}
             >
-            Submit
-              {/* {dataState.loading ? <Spinner /> : "Submit"} */}
+              {/* {loading ? <Spinner /> : "Submit"} */}
+              Submit
             </button>
             </div>
             
           </form>
           <div className="pt-6">
             <p className="text-gray-500 text-sm sm:text-md">
-              Already a user? <Link to="#" className="text-red-400">Login</Link>
+              Already a user? <Link to="/login" className="text-blue-400">Login</Link>
             </p>
           </div>
         </div>
       </div>
+      <ToastContainer draggable position="top-center" />
     </div>
   );
 }

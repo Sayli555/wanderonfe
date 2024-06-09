@@ -31,3 +31,14 @@ export const validateCriteria = [
       message: "Password must contain at least one special character",
     },
   ];
+
+  export const validatePassword = (password) => {
+    for (const criteria of validateCriteria) {
+        
+      if (!criteria.regex.test(password)) {
+        console.log("message",criteria.message)
+        return criteria.message;
+      }
+    }
+    return "";
+  };

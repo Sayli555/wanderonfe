@@ -1,13 +1,38 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
+import { useAuth } from "../Context/AuthContext";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const navigate=useNavigate()
+  const { isAuthenticated,logout } = useAuth();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLogin=()=>{
+    if(!isAuthenticated){
+      navigate("/login")
+    }
+    else{
+      const LogoutUser = async () => {
+        try {
+            const response = await fetch('https://wonderon-backend.vercel.app/logout', {
+                method: 'POST'
+               
+            });
+            if (response.ok) {
+              logout()
+            } else {
+                console.error('Logout failed');
+            }
+        } catch (error) {
+            console.error('Logout failed', error);
+        }
+    };
+    LogoutUser() 
+    }
+  }
   return (
     <div className="fixed top-0 left-0 w-full z-20">
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -35,12 +60,12 @@ const NavBar = () => {
               <li>
                 <Link to="/details" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</Link>
               </li>
+              {!isAuthenticated && <li>
+                <Link to="/signup" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign Up</Link>
+              </li>}
               <li>
-                <Link to="/login" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign UP</Link>
-              </li>
+                <button onClick={handleLogin} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{isAuthenticated ? "logout" : 'login'}</button>
+              </li> 
             </ul>
           </div>
         </div>

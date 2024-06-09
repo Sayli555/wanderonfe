@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { validateEmail} from "../utills/validation"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import { useAuth } from "../Context/AuthContext";
 function Login() {
-  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate=useNavigate()
   const [shouldSubmit,setShoulSubmit]=useState(false)
   const [formdata, setFormData] = useState({
     email: "",
     password: ""
   });
   
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [errors, setErrors] = useState("");
+
 
   const handleChange = (e) => {
     // const newPassword = event.target.value;
     const { name,value } = e.target;
-    if(name=="password"){
-        setPassword(value)
-    }
+    // if(name=="password"){
+    //     setPassword(value)
+    // }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -27,26 +28,15 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
-    console.log("submit")
     e.preventDefault();
-    if (!validateEmail(formdata.email)) {
-    //   toast.success('Please enter a valid email address.', {
-    //     position: toast.POSITION_CENTER,
-    //     className: 'custom-toast',
-    //     bodyClassName: 'custom-toast-body',
-    // });
-    alert(email)
-      return;
-    }
     if(formdata){
         setShoulSubmit(true)
     }
   };
-
   useEffect(()=>{
     const submitForm = async () => {
         try {
-          const response = await fetch('http://localhost:5555/login', {
+          const response = await fetch('https://wonderon-backend.vercel.app/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -55,19 +45,22 @@ function Login() {
           });
   
           const data = await response.json();
-        console.log("data",data)
+          
+          if(response.ok){
+            login(data.token)
+            navigate("/")
+          }
         } catch (error) {
           console.error('Error submitting form:', error);
         }
       };
       if (shouldSubmit) {
-        submitForm();
-        setShoulSubmit(false); // Reset the state
+        submitForm(); 
+        setShoulSubmit(false); 
       }
 
-  },[shouldSubmit])
+  },[shouldSubmit,navigate])
 
-  console.log("form",formdata)
   return (
         <div className="bg-gray-50 m-auto rounded-xl p-4 sm:p-6 md:p-8 max-w-lg">
           <div>
@@ -99,7 +92,7 @@ function Login() {
               />     
               <button
               onClick={handleSubmit}
-              className={`mt-8 w-full bg-gradient-to-r from-red-400 to-pink-400 text-white p-2 rounded`}
+              className={`mt-8 w-full bg-gradient-to-r from-blue-400 to-blue-900 text-white p-2 rounded`}
             >
             Submit
               {/* {dataState.loading ? <Spinner /> : "Submit"} */}
@@ -109,7 +102,7 @@ function Login() {
           </form>
           <div className="pt-6">
             <p className="text-gray-500 text-sm sm:text-md">
-              If not a user? <Link to="#" className="text-red-400">Sign Up</Link>
+              If not a user? <Link to="/signup" className="text-blue-400">Sign Up</Link>
             </p>
           </div>
         </div>
