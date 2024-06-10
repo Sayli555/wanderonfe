@@ -1,4 +1,4 @@
-# Wanderon
+# Secure User Authentication System
 
 ## You can find Backend Code on this Repo
 https://github.com/Sayli555/wanderonBe
@@ -19,6 +19,9 @@ List and provide a brief overview of the technologies used in the project.
 - React
 - Tailwind css
 
+## test credentials for login 
+email - test@test.com
+password - Test@12345
  
 ## Features
 
@@ -53,17 +56,18 @@ This will start your app.
 
 2. Register User:
 Provide email, password, etc .
+you have to pass email in email fromat and Strong password atleast in 8 words
 <img src="https://github.com/Sayli555/project-images/blob/master/wonderonfe2.png?raw=true"/>
 
-3. Login :
+4. Login :
 after login it create jwt token for user
 <img src="https://github.com/Sayli555/project-images/blob/master/wonderonfe3.png?raw=true"/>
 
-4. Private page(Product) :
+5. Private page(Product) :
 you have to pass jwt for authorisation
 <img src="https://github.com/Sayli555/project-images/blob/master/wonderonfe4.png?raw=true"/>
 
-5. Logout
+6. Logout
 after logout you can navigate to landing page
 
    
