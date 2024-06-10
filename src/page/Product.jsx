@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../Context/AuthContext";
 import CardCity from "../components/CardCity";
 
-const Details = () => {
+const Product = () => {
   const { token } = useAuth();
   const [tripdata, setTripData] = useState([]);
 
@@ -42,4 +42,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default Product;

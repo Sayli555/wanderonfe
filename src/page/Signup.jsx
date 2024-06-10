@@ -3,7 +3,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import {validatePassword,validateCriteria, validateEmail, validateName} from "../utills/validation"
 import { Link, useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import Spinner from "../components/Spinner";
 function Signup() {
   const [password, setPassword] = useState("");
   const navigate=useNavigate()
@@ -157,7 +156,6 @@ function Signup() {
               onClick={handleSubmit}
               className={`mt-8 w-full bg-gradient-to-r from-blue-400 to-blue-900 text-white p-2 rounded`}
             >
-              {/* {loading ? <Spinner /> : "Submit"} */}
               Submit
             </button>
             </div>

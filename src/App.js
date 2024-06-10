@@ -4,9 +4,10 @@ import Login from "./page/Login";
 import { Routes, Route } from "react-router-dom";
 import PrivateRoute from "./page/PrivateRoute";
 import Signup from "./page/Signup";
-import Details from "./page/Details";
+import Details from "./page/Product";
 import LandingPage from "./page/LandingPage";
 import Footer from "./components/Footer";
+import Product from "./page/Product";
 
 function App() {
   return (
@@ -18,10 +19,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route
-          path="/details"
+          path="/product"
           element={
             <PrivateRoute>
-              <Details />
+              <Product />
             </PrivateRoute>
           }
         />
