@@ -11,7 +11,7 @@ https://drive.google.com/file/d/1ONZ38IaK9oIPuU_e9Cw1pZAwkjOKY7uB/view?usp=shari
 
 ## Deployed App
 
- Frontend: https://wanderonfe.vercel.app/
+- Frontend: https://wanderonfe.vercel.app/
 
 ## Technology Stack
 
@@ -20,8 +20,8 @@ This project utilizes the following technologies:
 - Tailwind CSS: A utility-first CSS framework for rapid UI development.
 
 ## test credentials for login 
-email - test@test.com
-password - Test@12345
+- email - test@test.com
+- password - Test@12345
  
 ## Features
 
