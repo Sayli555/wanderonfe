@@ -29,18 +29,26 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateEmail(formdata.email)) {
-      toast.success('Please enter a valid email address.', {
-        position: toast.POSITION_CENTER,
-        className: 'custom-toast',
-        bodyClassName: 'custom-toast-body',
+      toast.info('Please enter a valid email address.', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
     });
       return;
     }
     if (!validateName(formdata.name)) {
-      toast.success("Please enter a valid name.", {
-        position: toast.POSITION_CENTER,
-        className: 'custom-toast',
-        bodyClassName: 'custom-toast-body',
+      toast.info("Please enter a valid name.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
     });
       return;
     }
@@ -168,7 +176,6 @@ function Signup() {
           </div>
         </div>
       </div>
-      <ToastContainer draggable position="top-center" />
     </div>
   );
 }
