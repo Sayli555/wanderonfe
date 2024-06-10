@@ -15,9 +15,9 @@ https://drive.google.com/file/d/1ONZ38IaK9oIPuU_e9Cw1pZAwkjOKY7uB/view?usp=shari
 
 ## Technology Stack
 
-List and provide a brief overview of the technologies used in the project.
-- React
-- Tailwind css
+This project utilizes the following technologies:
+- React: A JavaScript library for building user interfaces.
+- Tailwind CSS: A utility-first CSS framework for rapid UI development.
 
 ## test credentials for login 
 email - test@test.com
@@ -25,9 +25,9 @@ password - Test@12345
  
 ## Features
 
-- Register Form   : User can Register .
-- Login Page      : if user register then he can login 
-- private page    : after login user can see private page
+- egister Form    : Users can create an account by providing necessary information (username/email, password, etc.).
+- Login Page      : Registered users can log in using their credentials.
+- private page    : After logging in, users can access protected pages.
 
 
 ## Installation & Getting started
@@ -55,20 +55,20 @@ This will start your app.
 
 
 2. Register User:
-Provide email, password, etc .
-you have to pass email in email fromat and Strong password atleast in 8 words
+- Provide an email, password, and other necessary information.
+- Ensure the email is in the correct format and the password is strong (at least 8 characters).
 <img src="https://github.com/Sayli555/project-images/blob/master/wonderonfe2.png?raw=true"/>
 
 4. Login :
-after login it create jwt token for user
+- After logging in, a JWT token is created for the user
 <img src="https://github.com/Sayli555/project-images/blob/master/wonderonfe3.png?raw=true"/>
 
 5. Private page(Product) :
-you have to pass jwt for authorisation
+- Pass the JWT token for authorization to access protected routes.
 <img src="https://github.com/Sayli555/project-images/blob/master/wonderonfe4.png?raw=true"/>
 
 6. Logout
-after logout you can navigate to landing page
+- After logging out, you can navigate to the landing page.
 
    
 
