@@ -15,11 +15,7 @@ function Login() {
 
 
   const handleChange = (e) => {
-    // const newPassword = event.target.value;
     const { name,value } = e.target;
-    // if(name=="password"){
-    //     setPassword(value)
-    // }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -62,7 +58,7 @@ function Login() {
   },[shouldSubmit,navigate])
 
   return (
-        <div className="bg-gray-50 m-auto rounded-xl p-4 sm:p-6 md:p-8 max-w-lg">
+        <div className="bg-gray-50 m-auto mb-10 rounded-xl p-4 sm:p-6 md:p-8 max-w-lg">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">
               Login Form

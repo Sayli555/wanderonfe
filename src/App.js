@@ -1,28 +1,17 @@
-import logo from "./logo.svg";
 import "./App.css";
 import NavBar from "./components/Navbar";
-import Banner from "./components/BannerPage";
-import WhyWandorn from "./components/Why";
-import SignupForm from "./page/Signup";
-import PasswordForm from "./components/password";
 import Login from "./page/Login";
 import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./Context/AuthContext";
 import PrivateRoute from "./page/PrivateRoute";
 import Signup from "./page/Signup";
 import Details from "./page/Details";
 import LandingPage from "./page/LandingPage";
-import SharkVideo from "./components/CardCity";
-import CardGrid from "./components/CardCity";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
-      {/* 
-      <Banner/>
-      <WhyWandorn/> */}
-      {/* <SignupForm/> */}
-      {/* <PasswordForm/> */}
+      
       <NavBar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -37,6 +26,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer/>
     </div>
   );
 }

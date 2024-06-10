@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import ExperinceVideo from "../components/ExperinceVideo";
 import { useAuth } from "../Context/AuthContext";
 import CardCity from "../components/CardCity";
 
@@ -30,7 +28,6 @@ const Details = () => {
         console.error("Error submitting form:", error);
       }
     }
-
     fetchPrivateRoute();
   }, []);
 
